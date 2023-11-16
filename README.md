@@ -33,8 +33,44 @@ pip install python-decouple
 ~~~
 </li>
 </ol>
+</details>
 
 ---
-<p align="right">Actualizado el: 12.11.2023 
+<details>
+<summary align="middle"><b>OBTENER TOKEN TELEGRAM</b></summary><br>
+<ol>
+    <li>
+    Busca el chat de "BotFather" en Telegram:<br>
+<img width="600" src="src/img/botFather.png">
+    </li>
+    <li>
+    Inicia el chat de BotFather:<br>
+    <img width="600" src="src/img/start_botFather.png">
+    </li>
+    <li>
+    Ingresa el comando /newbot para comenzar:<br>
+    <img width="600" src="src/img/new_bot.png">
+    </li>
+    <li>
+    Crea un nombre para tu bot:<br>
+    <img width="600" src="src/img/bot_name.png">
+    </li>
+    <li>
+    Crea un user name para tu bot:<br>
+    <img width="600" src="src/img/bot_user_name.png">
+    </li>
+    <li>
+    Obten el Token de tu bot:<br>
+    <img width="600" src="src/img/bot_token.png">
+    </li>
+    <li>
+    Ahora puedes buscar tu bot con su user name:<br>
+    <img width="600" src="src/img/search_bot.png">
+    </li>
+</ol>
+</details>
+
+---
+<p align="right">Actualizado el: 16.11.2023</p>
 
 ---
