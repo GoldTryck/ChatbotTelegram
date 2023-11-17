@@ -1,20 +1,16 @@
 import telebot
-import time
-# Biblioteca para manejar botones
-from telebot.types import ReplyKeyboardMarkup
-# from telebot.types import ForceReply  # Para citar un mensaje
+from telebot.types import ReplyKeyboardMarkup  # Biblioteca para manejar botones
 from telebot.types import ReplyKeyboardRemove  # Para remover botones
-# Biblioteca para acceder a las variables de entorno del archivo .env
 from random import randint
+
+
 from decouple import config
-
 BOT_TOKEN = config('BOT_TOKEN')
-
 bot = telebot.TeleBot(BOT_TOKEN)
-usuarios = {}  # variable global
+usuarios = {}
 
 
-@bot.message_handler(commands=["jugar"])
+@bot.message_handler(commands=['jugar'])
 def cmd_game(message):
     num = randint(1, 10)  # generamos un numero aleatorio entre 1 y 10
     cid = message.chat.id  # guardamos el chat id
@@ -44,6 +40,7 @@ def verify_num(message):
                 markup = ReplyKeyboardRemove()
                 bot.reply_to(message, "Felicidades! Has ganado!",
                              reply_markup=markup)
+                del usuarios[cid]
                 return
             elif n > usuarios[cid]:
                 ans = bot.reply_to(
@@ -53,7 +50,3 @@ def verify_num(message):
                 ans = bot.reply_to(
                     message, "Pista: El número que buscas es mayor.")
                 bot.register_next_step_handler(ans, verify_num)
-
-
-if __name__ == '__main__':
-    bot.infinity_polling()

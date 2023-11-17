@@ -1,22 +1,10 @@
-import telebot
-# import time
-# Biblioteca para manejar botones
-# from telebot.types import ReplyKeyboardMarkup
-# from telebot.types import ForceReply  # Para citar un mensaje
-# from telebot.types import ReplyKeyboardRemove  # Para remover botones
-# Biblioteca para acceder a las variables de entorno del archivo .env
-# from random import randint
 from telebot.types import InlineKeyboardMarkup  # Para crear botonera inline
 from telebot.types import InlineKeyboardButton  # Para definir botones inline
 
-from decouple import config
-BOT_TOKEN = config('BOT_TOKEN')
-
-bot = telebot.TeleBot(BOT_TOKEN)
 # @bot.message_handler(commands = ['opciones'])
 
 
-def cmd_options(message):
+def cmd_links(bot, message):
     cid = message.chat.id
     # Numero de botones en cada fila, 3 por default
     markup = InlineKeyboardMarkup(row_width=2)
@@ -28,20 +16,23 @@ def cmd_options(message):
     button4 = InlineKeyboardButton(
         'Video random YouTube', 'https://www.youtube.com/watch?v=Ap4DtvUu7Bk&list=RDEM3wFvEfOjriWsWNr4hRPsng&start_radio=1')
     close_button = InlineKeyboardButton(
-        'Cerrar', callback_data="close_options")
+        'Cerrar', callback_data="close_options")  # Callback_data activara el manejador de consulta de retorno bot.callback_query_handler cuando el usuario presione el boton cerrar
     markup.add(button1, button2, button3, button4, close_button)
 
     bot.send_message(cid, "Mis proyectos de programación", reply_markup=markup)
 
 
+# Manejar las consultas de retorno de llamada con cualquier dato:
 # @bot.callback_query_handler(func=lambda x: True)
-def response_options(call):
+# (response_links se ejecutará siempre que se reciba una consulta de retorno de llamada)
+def response_links(bot, call):
+    # Obtiene el ID del usuario que inició la consulta de retorno de llamada
     cid = call.from_user.id
+
+    # Obtiene el ID del mensaje al que se refiere la consulta de retorno de llamada
     mid = call.message.id
+
+    # Verifica si el dato asociado con la consulta de retorno de llamada es "close_options"
     if call.data == "close_options":
+        # Utiliza el método delete_message para eliminar el mensaje asociado a la consulta de retorno de llamada
         bot.delete_message(cid, mid)
-
-
-'''if __name__ == '__main__':
-    print('Starting bot...')
-    bot.infinity_polling()'''

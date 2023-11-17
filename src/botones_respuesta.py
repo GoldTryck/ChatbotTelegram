@@ -1,14 +1,11 @@
 import telebot
-import time
-# Biblioteca para manejar botones
-from telebot.types import ReplyKeyboardMarkup
+from telebot.types import ReplyKeyboardMarkup  # Biblioteca para manejar botones
 from telebot.types import ForceReply  # Para citar un mensaje
 from telebot.types import ReplyKeyboardRemove  # Para remover botones
 # Biblioteca para acceder a las variables de entorno del archivo .env
 from decouple import config
 
 BOT_TOKEN = config('BOT_TOKEN')
-
 bot = telebot.TeleBot(BOT_TOKEN)
 usuarios = {}  # variable global
 

@@ -1,15 +1,8 @@
-import telebot
-from decouple import config
 import time
-
-BOT_TOKEN = config('BOT_TOKEN')
-
-bot = telebot.TeleBot(BOT_TOKEN)
-
 # @bot.message_handler(commands = ['eliminar'])
 
 
-def cmd_delete_msg(message):
+def cmd_delete_msg(bot, message):
     initial_message = bot.send_message(
         message.chat.id, "Este mensaje cambiará y tu mensaje sera eliminado en:")
     for i in range(3, 0, -1):
